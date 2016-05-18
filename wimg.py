@@ -16,7 +16,6 @@ def rotari(data,time=9999):
     bus9=data[8]
     bus10=data[9]
 
-
     txt1f = bus1[1]
     txt1l = bus2[1]
     txt2f = bus3[1]
@@ -28,36 +27,65 @@ def rotari(data,time=9999):
     txt5f = bus9[1]
     txt5l = bus10[1]
 
-
     bus1f = str(bus1[0]/100).zfill(2)+u":"+str(bus1[0]%100).zfill(2)
+
+    ##　TODO ↓　ソースコードをキレイにする
     if bus1[0] == 9999:
+
         bus1f = u"--:--"
+
     bus1l = str(bus2[0]/100).zfill(2)+u":"+str(bus2[0]%100).zfill(2)
+
     if bus2[0] == 9999:
+
         bus1l = u"--:--"
+
     bus2f = str(bus3[0]/100).zfill(2)+u":"+str(bus3[0]%100).zfill(2)
+
     if bus3[0] == 9999:
+
         bus2f = u"--:--"
+
     bus2l = str(bus4[0]/100).zfill(2)+u":"+str(bus4[0]%100).zfill(2)
+
     if bus4[0] == 9999:
+
         bus2l = u"--:--"
+
     bus3f = str(bus5[0]/100).zfill(2)+u":"+str(bus5[0]%100).zfill(2)
+
     if bus5[0] == 9999:
+
         bus3f = u"--:--"
+
     bus3l = str(bus6[0]/100).zfill(2)+u":"+str(bus6[0]%100).zfill(2)
+
     if bus6[0] == 9999:
+
         bus3l = u"--:--"
+
     bus4f = str(bus7[0]/100).zfill(2)+u":"+str(bus7[0]%100).zfill(2)
+
     if bus7[0] == 9999:
+
         bus4f = u"--:--"
+
     bus4l = str(bus8[0]/100).zfill(2)+u":"+str(bus8[0]%100).zfill(2)
+
     if bus8[0] == 9999:
+
         bus4l = u"--:--"
+
     bus5f = str(bus9[0]/100).zfill(2)+u":"+str(bus9[0]%100).zfill(2)
+
     if bus9[0] == 9999:
+
         bus5f = u"--:--"
+
     bus5l = str(bus10[0]/100).zfill(2)+u":"+str(bus10[0]%100).zfill(2)
+
     if bus10[0] == 9999:
+
         bus5l = u"--:--"
 
     # 透かしを入れる画像を使って、画像オブジェクトを取得します。
@@ -69,9 +97,6 @@ def rotari(data,time=9999):
 
     # フォントを取得します。
     fnt = ImageFont.truetype(font='font/ipaexg.ttf', size=18)
-
-    # 透かし文字の横幅、縦幅を取得します。
-    #textw, texth = draw.textsize(watermark, font=fnt)
 
     # 透かし文字を中央に入れます。
     # 1
