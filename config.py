@@ -3,9 +3,9 @@
 # bot情報
 HEADERS = {
     # Channel ID
-    "X-Line-ChannelID": "xxxxxxxxxx",　
+    "X-Line-ChannelID": "XXXXXXXXXX",
     # Channel Secret
-    "X-Line-ChannelSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "X-Line-ChannelSecret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
      # MID
-    "X-Line-Trusted-User-With-ACL": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "X-Line-Trusted-User-With-ACL": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 }
