@@ -1,8 +1,16 @@
 # coding: utf-8
+
+##
+## バス処理
+##
+
 from wimg import rotari
 
-
 def set_bus(time,w = 0):
+    ##
+    ## 現在時刻からバス出発時間取得し画像描写
+    ##
+
     bus1 = search_bus(time,1,w)
     bus1[1]=bus_to(bus1[1])
     buf = bus1[0]+1
@@ -30,30 +38,24 @@ def set_bus(time,w = 0):
     bus10[1]=bus_to(bus10[1])
     busx = [9999,99]
     data = [
-        bus1,bus2,
-        bus3,bus4,
-        bus5,bus6,
-        bus7,bus8,
-        bus9,bus10
+        bus1,
+        bus2,
+        bus3,
+        bus4,
+        bus5,
+        bus6,
+        bus7,
+        bus8,
+        bus9,
+        bus10
         ]
     return rotari(data,time)
 
-
-## 関数　bus_to
-## bus id からバスの行き先を返す関数
-# 引数　bus_id
-# 返り値 文字列
-#
-# 三宮線
-#   1 : 関学エクスプレス 新神戸駅 三宮
-#   2 : 関学エクスプレス 　　　　 三宮
-#   3 :  特急   新神戸駅   三宮
-#
-# 新三田線
-
-# TODO 新三田、三田　つつじヶ丘北口、上ケ原キャンパス行き
-
 def bus_to(bus_id = 0):
+    ##
+    ## bus_idからバスの行き先を返す
+    ##
+
     if (bus_id == 1):
         return u"関学エクスプレス 　　　　 三宮"
     elif (bus_id == 2):
@@ -103,50 +105,40 @@ def bus_to(bus_id = 0):
 #   1 : KSCロータリー発三宮行き 平日
 # 返り値 リスト　[bustime, bus_id]
 def search_bus(time,type = 1,w=0):
-    buf = []
+
     if(type ==1):
-        buf=to_sannnomiya(w)
+        bustimes, bus =to_sannnomiya(w)
     elif(type == 2):
-        buf = to_sinsanda(w)
+        bustimes, bus = to_sinsanda(w)
     elif(type == 3):
-        buf = to_sanda(w)
+        bustimes, bus = to_sanda(w)
     elif(type == 4):
-        buf = to_tutuzi(w)
+        bustimes, bus = to_tutuzi(w)
     elif (type == 5):
-        buf = to_uegahara(w)
+        bustimes, bus = to_uegahara(w)
 
-    bustimes = buf[0]
-    bus = buf[1]
+    # 2分探索
     high = len(bustimes)
-
     if time>bustimes[high-1]:
         return [9999,89]
-
     low = 0
-    # t は中央番目の数
     t = (low + high) / 2
-    # 探索の下限のlowが上限のhighになるまで探索
-    # lowがhighに達すると数は見つからなかったということ
     while (low<=high):
         if ((time<=bustimes[t])and(time>bustimes[t-1])):
             break
         elif (time > bustimes[t]):
             low = t + 1
-
         elif (time < bustimes[t]):
             high = t - 1
         t = (low + high) / 2
     return [bustimes[t],bus[t]]
 
-##  TODO : sqliteへの書き換え
-## 関数　to_sannnomiya
-## KSCロータリー発三宮行きバスダイヤ
-# bus
-#   1 : 授業時のみ関学エクスプレス(新神戸通過)
-#   2 : 休講期間運行関学エクスプレス
-#   3 : 三宮行き
+##  TODO : ダイヤのsqliteへの書き換え
 
 def to_sannnomiya(w=0):
+    ##
+    ## KSCロータリー発三宮行きバスダイヤ
+    ##
     time=[]
     bus=[]
     if w == 0 :
@@ -258,6 +250,9 @@ def to_sannnomiya(w=0):
     return [time, bus]
 
 def to_sinsanda(w=0):
+    ##
+    ## KSCロータリー発新三田行きバスダイヤ
+    ##
     time=[]
     bus=[]
     if (w == 0):
@@ -348,6 +343,9 @@ def to_sinsanda(w=0):
     return [time, bus]
 
 def to_sanda(w=0):
+    ##
+    ## KSCロータリー発三田行きバスダイヤ
+    ##
     time=[]
     bus=[]
     if (w==0):
@@ -423,6 +421,7 @@ def to_sanda(w=0):
     return [time, bus]
 
 def to_tutuzi(w=0):
+
     time=[]
     bus=[]
     if (w == 0):
@@ -455,6 +454,9 @@ def to_tutuzi(w=0):
 
     return [time, bus]
 def to_uegahara(w=0):
+    ##
+    ## KSCロータリー発上ケ原行きバスダイヤ
+    ##
     time=[]
     bus=[]
     if (w == 0):
